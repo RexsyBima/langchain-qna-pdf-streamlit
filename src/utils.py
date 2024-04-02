@@ -5,8 +5,15 @@ from langchain_community.vectorstores.faiss import FAISS
 from langchain.memory import ConversationBufferMemory
 from langchain.chains.conversational_retrieval.base import ConversationalRetrievalChain
 from langchain_openai import ChatOpenAI
-from langchain_community.llms.huggingface_endpoint import HuggingFaceEndpoint
-from langchain_community.embeddings.huggingface_hub import HuggingFaceHubEmbeddings
+
+# from langchain_community.llms.huggingface_endpoint import HuggingFaceEndpoint
+# from langchain_community.embeddings.huggingface_hub import HuggingFaceHubEmbeddings
+import pandas as pd
+
+
+def save_xlsx(chats: list[dict], filename: str):
+    df = pd.DataFrame(chats)
+    df.to_excel(f"{filename}.xlsx", index=False)
 
 
 def get_pdf_text(pdf_docs):
